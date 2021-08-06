@@ -1,0 +1,10 @@
+import sqlite3
+conn=sqlite3.connect('StudentInfo')
+cur=conn.cursor()
+cur.execute('DROP TABLE IF EXISTS student1')
+cur.execute('CREATE TABLE student1 (name TEXT, rno INTEGER)')
+cur.execute('INSERT INTO student1 (name, rno) VALUES (?,?)',('Mahesh',45))
+cur.execute('INSERT INTO student1 (name, rno) VALUES (?,?)',('Rahul',30))
+cur.execute('SELECT * FROM student1')
+print(cur.fetchall())
+conn.close()
