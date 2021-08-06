@@ -1,0 +1,38 @@
+#REQUESTED FILE:
+#Read the Problem statement and write your program here
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+from matplotlib import style
+
+from sklearn.cluster import KMeans
+
+style.use('ggplot')
+
+x1 = np.array([[1.713, 1.586], [0.180, 1.786], [0.353, 1.240], [0.940, 1.566], [1.486, 0.759], [1.266, 1.106], [1.540, 0.419], [0.459, 1.799], [0.773, 0.186], [0.906, 0.606]])
+
+kmeans = KMeans(n_clusters = 3, random_state = 13)
+
+kmeans.fit(x1)
+
+centroid = kmeans.cluster_centers_
+
+labels = kmeans.labels_
+
+print(centroid)
+
+print(labels)
+
+colors = ['g.', 'r.', 'c.']
+
+for i in range(len(x1)):
+    print("coordinate:", x1[i], "label:", labels[i])
+    plt.plot(x1[i][0], x1[i][1], colors[labels[i]], markersize = 20)
+
+plt.scatter(centroid[:, 0], centroid[:, 1], marker = 'x', s = 200, linewidth = 10, zorder = 20)
+
+plt.show()
+
+
